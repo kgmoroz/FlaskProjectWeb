@@ -32,7 +32,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
+            login_user(user)
             return redirect(url_for('index'))
         else:
             flash('Неправильное имя или пароль!', 'danger')
